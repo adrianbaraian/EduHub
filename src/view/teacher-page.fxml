@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" stylesheets="@../resources/teacher-page-stylesheet.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TeacherPageController">
+   <right>
+      <AnchorPane prefHeight="440.0" prefWidth="605.0" style="-fx-background-color: #193b36;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <children>
+            <TableView fx:id="table_studentGrades" layoutX="10.0" layoutY="85.0" onMouseClicked="#getSelectedGrade" prefHeight="220.0" prefWidth="588.0" visible="false">
+              <columns>
+                <TableColumn fx:id="col_studentNumber" prefWidth="120.0" text="student_number" />
+                <TableColumn fx:id="col_firstName" prefWidth="140.0" text="first_name" />
+                  <TableColumn fx:id="col_lastName" prefWidth="137.0" text="last_name" />
+                  <TableColumn fx:id="col_courseCode" prefWidth="110.0" text="course_code" />
+                  <TableColumn fx:id="col_grade" text="grade" />
+              </columns>
+            </TableView>
+            <Button fx:id="setGradeButton" layoutX="428.0" layoutY="349.0" mnemonicParsing="false" onAction="#onSetGradeButtonClick" text="Set Grade" visible="false" />
+            <Button fx:id="backButton" layoutX="520.0" layoutY="14.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="BACK" visible="false" />
+            <TextField fx:id="newPasswordField" layoutX="229.0" layoutY="85.0" onKeyReleased="#checkCompletedFields" prefWidth="254.0" visible="false" />
+            <TextField fx:id="confirmPasswordField" layoutX="230.0" layoutY="132.0" onKeyReleased="#checkCompletedFields" prefHeight="25.0" prefWidth="254.0" visible="false" />
+            <Label fx:id="newPasswordLabel" layoutX="122.0" layoutY="90.0" text="New Password:" visible="false" />
+            <Label fx:id="confirmPasswordLabel" layoutX="68.0" layoutY="137.0" text="Confirm New Password:" visible="false" />
+            <Button fx:id="changeButton" layoutX="264.0" layoutY="305.0" mnemonicParsing="false" onAction="#onChangeButtonClick" text="Change" visible="false" />
+            <TextField fx:id="gradeField" alignment="CENTER" layoutX="111.0" layoutY="347.0" prefHeight="47.0" prefWidth="149.0" visible="false">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <Label fx:id="gradeLabel" layoutX="54.0" layoutY="363.0" text="Grade:" visible="false" />
+            <MenuBar fx:id="menuBar" layoutX="-2.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Students">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#onGiveGradeToStudentButtonClick" text="Give Grade" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" onAction="#onChangePasswordButtonClick" text="Change">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Password" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <Label fx:id="giveGradesTitle" layoutX="20.0" layoutY="20.0" text="Give Grades To Students: " visible="false" />
+            <ListView fx:id="list_courses" layoutX="118.0" layoutY="118.0" onMouseClicked="#getSelected" prefHeight="267.0" prefWidth="373.0" visible="false" />
+            <Label fx:id="selectCourseTitle" layoutX="30.0" layoutY="30.0" text="Select Course: " visible="false" />
+            <ImageView fx:id="backgroundImage" fitHeight="440.0" fitWidth="471.0" layoutX="74.0" layoutY="49.0" opacity="0.37" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/EduHubLogo.jpeg" />
+               </image>
+               <effect>
+                  <Blend mode="SCREEN" opacity="0.42" />
+               </effect>
+            </ImageView>
+            <Label fx:id="passwordErrorLabel" layoutX="218.0" layoutY="232.0" text="Passwords Do Not Match!!!" visible="false" />
+            <Label fx:id="successLabel" layoutX="283.0" layoutY="224.0" text="Success!" visible="false" />
+            <Label fx:id="completeAllFieldsLabel" layoutX="220.0" layoutY="226.0" text="Please Complete All Fields" visible="false" />
+         </children>
+      </AnchorPane>
+   </right>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+   <left>
+      <AnchorPane prefHeight="440.0" prefWidth="280.0" style="-fx-background-color: #193b36;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="65.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/teacher-pp.png" />
+               </image>
+               <effect>
+                  <InnerShadow blurType="GAUSSIAN" height="100.14" radius="34.915" width="41.52" />
+               </effect>
+            </ImageView>
+            <Label fx:id="teacherFullName" layoutX="15.0" layoutY="251.0" text="Full Name:" />
+            <Label fx:id="teacherNameLabel" layoutX="15.0" layoutY="283.0" />
+            <Button fx:id="logOutButton" layoutX="87.0" layoutY="424.0" mnemonicParsing="false" onAction="#onLogOutButtonClick" text="LOG OUT" />
+            <Label fx:id="teacherDepartment" layoutX="15.0" layoutY="322.0" text="Department" />
+            <Label fx:id="departmentLabel" layoutX="15.0" layoutY="355.0" />
+            <Label fx:id="accountTypeLabel" layoutX="32.0" layoutY="161.0" text="Account Type: TEACHER" />
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

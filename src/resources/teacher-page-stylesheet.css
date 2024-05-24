@@ -1,0 +1,101 @@
+.label {
+    -fx-font: 14px "SansSerif";
+    -fx-text-fill: white;
+}
+
+.button {
+    -fx-padding: 10px 16px;
+    -fx-font: 16px "SansSerif";
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-border-radius: 3px;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-cursor: hand;
+}
+
+#accountTypeLabel {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+#teacherFullName,
+#teacherDepartment {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+#giveGradesTitle,
+#selectCourseTitle {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgb(255, 215, 0);
+    -fx-underline: true;
+}
+
+#backButton {
+    -fx-font-size: 12px;
+}
+
+#table_studentGrades .table-column .label,
+#table_chooseCourse .table-column .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #193b36;
+}
+
+.menu-bar {
+    -fx-background-color: #193b36;
+    -fx-border-width: 2px;
+    -fx-border-color: white;
+    -fx-pref-width: 607px;
+    -fx-pref-height: 30px;
+}
+
+.menu-bar .label {
+    -fx-font-size: 14.0 pt;
+    -fx-font-family: "SansSerif";
+    -fx-text-fill: white;
+    -fx-font-weight: bold; 
+    -fx-padding: 10.0px;
+
+}
+
+.menu-bar .menu-button:hover, .menu-bar .menu-button:focused, .menu-bar .menu-button:showing {
+    -fx-background: black ;
+    -fx-opacity: 0.5;
+    -fx-text-fill: white;
+}
+
+.menu-item {
+    -fx-padding: 8px 16px;
+    -fx-text-fill: #193b36;
+    -fx-background: darkgray ;
+}
+.menu-item .label{
+    -fx-font-size: 14.0 pt;
+    -fx-text-fill: #193b36;
+}
+.menu-item .label:hover{
+    -fx-font-size: 14.0 pt;
+    -fx-background: #193b36;
+    -fx-text-fill: white;
+}
+
+.list-cell {
+    -fx-font: 24px "SansSerif";
+    -fx-text-fill: #193b36;
+}
+
+#passwordErrorLabel,
+#completeAllFieldsLabel {
+    -fx-text-fill: red;
+    -fx-font: 16px "SansSerif";
+    -fx-font-weight: bold;
+}
+
+#successLabel {
+    -fx-text-fill: rgb(0, 156, 0);
+    -fx-font: 16px "SansSerif";
+    -fx-font-weight: bold;
+}

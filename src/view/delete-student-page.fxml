@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DeleteStudentPageController">
+   <center>
+      <AnchorPane prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #193b36;" stylesheets="@../resources/admin-page-stylesheet.css" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+         <children>
+            <TableView fx:id="table_students" layoutX="70.0" layoutY="145.0" onMouseClicked="#getSelected" prefHeight="200.0" prefWidth="455.0">
+              <columns>
+                <TableColumn fx:id="col_userid" prefWidth="55.0" text="userid" />
+                <TableColumn fx:id="col_username" prefWidth="125.0" text="username" />
+                  <TableColumn fx:id="col_password" prefWidth="95.0" text="password" />
+                  <TableColumn fx:id="col_firstname" prefWidth="90.0" text="firstname" />
+                  <TableColumn fx:id="col_lastname" prefWidth="90.0" text="lastname" />
+              </columns>
+            </TableView>
+            <Button fx:id="deleteButton" layoutX="227.0" layoutY="405.0" mnemonicParsing="false" onAction="#onDeleteButtonClick" prefHeight="47.0" prefWidth="136.0" text="Delete" />
+            <Label fx:id="Title" layoutX="211.0" layoutY="54.0" text="Delete Student" />
+            <TextField fx:id="deleteStudentIDField" layoutX="221.0" layoutY="99.0" />
+            <Label layoutX="190.0" layoutY="102.0" text="ID:" />
+            <Label fx:id="successLabel" layoutX="265.0" layoutY="363.0" text="Success!" visible="false" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

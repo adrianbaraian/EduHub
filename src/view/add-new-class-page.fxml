@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddNewClassPageController">
+    <center>
+        <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #193b36;" stylesheets="@../resources/admin-page-stylesheet.css" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+            <children>
+                <Label layoutX="76.0" layoutY="110.0" text="Class Name:" />
+                <TextField fx:id="newClassNameField" layoutX="199.0" layoutY="99.0" onKeyReleased="#checkCompletedFields" prefHeight="43.0" prefWidth="327.0" />
+                <TextField fx:id="newClassCodeField" layoutX="199.0" layoutY="180.0" onKeyReleased="#checkCompletedFields" prefHeight="43.0" prefWidth="327.0" />
+                <Label layoutX="78.0" layoutY="192.0" text="Class Code:" />
+                <Label fx:id="Title" layoutX="208.0" layoutY="33.0" text="Add New Class" />
+                <Button fx:id="addClassButton" layoutX="232.0" layoutY="315.0" mnemonicParsing="false" onAction="#onAddClassButtonClick" prefHeight="40.0" prefWidth="127.0" text="Add" />
+            <Label fx:id="completeAllFieldsLabel" layoutX="184.0" layoutY="263.0" text="Please Complete All The Fields" visible="false" />
+            <Label fx:id="classNameAlreadyExistsLabel" layoutX="193.0" layoutY="263.0" text="Class Name Already Exists" visible="false" />
+            <Label fx:id="classCodeAlreadyExistsLabel" layoutX="195.0" layoutY="263.0" text="Class Code Already Exists" visible="false" />
+            <Label fx:id="successLabel" layoutX="263.0" layoutY="253.0" text="Success!" visible="false" />
+            </children>
+        </AnchorPane>
+    </center>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</BorderPane>

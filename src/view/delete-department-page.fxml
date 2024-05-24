@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DeleteDepartmentPageController">
+    <center>
+        <AnchorPane prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #193b36;" stylesheets="@../resources/admin-page-stylesheet.css" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </BorderPane.margin>
+            <children>
+                <TableView fx:id="table_departments" layoutX="103.0" layoutY="145.0" onMouseClicked="#getSelected" prefHeight="200.0" prefWidth="386.0">
+                    <columns>
+                        <TableColumn fx:id="col_departmentid" prefWidth="128.0" text="departmentid" />
+                        <TableColumn fx:id="col_departmentName" prefWidth="257.0" text="department_name" />
+                    </columns>
+                </TableView>
+                <Label fx:id="Title" layoutX="189.0" layoutY="47.0" text="Delete Department" />
+                <TextField fx:id="deleteDepartmentIDField" layoutX="221.0" layoutY="99.0" />
+                <Label layoutX="190.0" layoutY="102.0" text="ID:" />
+                <Button fx:id="deleteButton" layoutX="227.0" layoutY="397.0" mnemonicParsing="false" onAction="#onDeleteButtonClick" prefHeight="47.0" prefWidth="136.0" text="Delete" />
+            <Label fx:id="successLabel" layoutX="264.0" layoutY="360.0" text="Success!" visible="false" />
+            </children>
+        </AnchorPane>
+    </center>
+</BorderPane>

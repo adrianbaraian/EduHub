@@ -1,0 +1,227 @@
+-- DROP SCHEMA public;
+
+CREATE SCHEMA public AUTHORIZATION pg_database_owner;
+
+COMMENT ON SCHEMA public IS 'standard public schema';
+
+-- DROP SEQUENCE public.appuser_userid_seq;
+
+CREATE SEQUENCE public.appuser_userid_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE public.class_classid_seq;
+
+CREATE SEQUENCE public.class_classid_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE public.course_courseid_seq;
+
+CREATE SEQUENCE public.course_courseid_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE public.departments_departmentid_seq;
+
+CREATE SEQUENCE public.departments_departmentid_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE public.enrollment_enrollmentid_seq;
+
+CREATE SEQUENCE public.enrollment_enrollmentid_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE public.student_studentid_seq;
+
+CREATE SEQUENCE public.student_studentid_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE public.teacher_teacherid_seq;
+
+CREATE SEQUENCE public.teacher_teacherid_seq
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START 1
+	CACHE 1
+	NO CYCLE;-- public.classes definition
+
+-- Drop table
+
+-- DROP TABLE public.classes;
+
+CREATE TABLE public.classes (
+	classid int4 NOT NULL GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START 1 CACHE 1 NO CYCLE),
+	class_code varchar(20) NOT NULL,
+	class_name varchar(50) NOT NULL,
+	CONSTRAINT class_pk PRIMARY KEY (classid),
+	CONSTRAINT class_un UNIQUE (class_code),
+	CONSTRAINT classes_un UNIQUE (class_name)
+);
+
+
+-- public.departments definition
+
+-- Drop table
+
+-- DROP TABLE public.departments;
+
+CREATE TABLE public.departments (
+	departmentid int4 NOT NULL GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START 1 CACHE 1 NO CYCLE),
+	department_code varchar(20) NOT NULL,
+	department_name varchar(50) NOT NULL,
+	CONSTRAINT departments_pk PRIMARY KEY (departmentid),
+	CONSTRAINT departments_un UNIQUE (department_code),
+	CONSTRAINT departments_un1 UNIQUE (department_name)
+);
+
+
+-- public.users definition
+
+-- Drop table
+
+-- DROP TABLE public.users;
+
+CREATE TABLE public.users (
+	userid int4 NOT NULL GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START 1 CACHE 1 NO CYCLE),
+	username varchar(50) NOT NULL,
+	"password" varchar(50) NOT NULL,
+	usertype varchar(20) NOT NULL,
+	firstname varchar(50) NOT NULL,
+	lastname varchar(50) NOT NULL,
+	CONSTRAINT users_pk PRIMARY KEY (userid),
+	CONSTRAINT users_un UNIQUE (username)
+);
+
+
+-- public.courses definition
+
+-- Drop table
+
+-- DROP TABLE public.courses;
+
+CREATE TABLE public.courses (
+	courseid int4 NOT NULL GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START 1 CACHE 1 NO CYCLE),
+	course_name varchar(50) NOT NULL,
+	course_description text NOT NULL,
+	number_of_credits int4 NOT NULL,
+	course_code varchar(20) NOT NULL,
+	departmentid int4 NOT NULL,
+	CONSTRAINT course_pk PRIMARY KEY (courseid),
+	CONSTRAINT course_un UNIQUE (course_name),
+	CONSTRAINT course_un1 UNIQUE (course_code),
+	CONSTRAINT courses_departments_fk FOREIGN KEY (departmentid) REFERENCES public.departments(departmentid) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+-- public.students definition
+
+-- Drop table
+
+-- DROP TABLE public.students;
+
+CREATE TABLE public.students (
+	studentid int4 NOT NULL GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START 1 CACHE 1 NO CYCLE),
+	student_registration_number varchar(20) NOT NULL,
+	userid int4 NOT NULL,
+	classid int4 NULL,
+	CONSTRAINT student_pk PRIMARY KEY (studentid),
+	CONSTRAINT student_un UNIQUE (student_registration_number),
+	CONSTRAINT student_un1 UNIQUE (userid),
+	CONSTRAINT student_appuser_fk FOREIGN KEY (userid) REFERENCES public.users(userid) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT student_class_fk FOREIGN KEY (classid) REFERENCES public.classes(classid) ON DELETE SET NULL ON UPDATE SET NULL
+);
+
+
+-- public.teachers definition
+
+-- Drop table
+
+-- DROP TABLE public.teachers;
+
+CREATE TABLE public.teachers (
+	teacherid int4 NOT NULL GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START 1 CACHE 1 NO CYCLE),
+	userid int4 NOT NULL,
+	departmentid int4 NOT NULL,
+	years_of_teaching int4 NOT NULL,
+	CONSTRAINT teacher_pk PRIMARY KEY (teacherid),
+	CONSTRAINT teacher_un UNIQUE (userid),
+	CONSTRAINT teachers_check CHECK (((years_of_teaching >= 0) AND (years_of_teaching <= 80))),
+	CONSTRAINT teacher_appuser_fk FOREIGN KEY (userid) REFERENCES public.users(userid) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT teachers_departments_fk FOREIGN KEY (departmentid) REFERENCES public.departments(departmentid) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+-- public.teachers_classes definition
+
+-- Drop table
+
+-- DROP TABLE public.teachers_classes;
+
+CREATE TABLE public.teachers_classes (
+	teacherid int4 NOT NULL,
+	classid int4 NOT NULL,
+	CONSTRAINT teachers_classes_pk PRIMARY KEY (teacherid, classid),
+	CONSTRAINT teachers_classes_classes_fk FOREIGN KEY (classid) REFERENCES public.classes(classid) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT teachers_classes_teachers_fk FOREIGN KEY (teacherid) REFERENCES public.teachers(teacherid) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+-- public.teachers_courses definition
+
+-- Drop table
+
+-- DROP TABLE public.teachers_courses;
+
+CREATE TABLE public.teachers_courses (
+	teacherid int4 NOT NULL,
+	courseid int4 NOT NULL,
+	CONSTRAINT teachers_courses_pk PRIMARY KEY (courseid, teacherid),
+	CONSTRAINT teachers_courses_courses_fk FOREIGN KEY (courseid) REFERENCES public.courses(courseid) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT teachers_courses_teachers_fk FOREIGN KEY (teacherid) REFERENCES public.teachers(teacherid) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+
+-- public.enrollment definition
+
+-- Drop table
+
+-- DROP TABLE public.enrollment;
+
+CREATE TABLE public.enrollment (
+	enrollmentid int4 NOT NULL GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 2147483647 START 1 CACHE 1 NO CYCLE),
+	studentid int4 NOT NULL,
+	courseid int4 NOT NULL,
+	teacherid int4 NOT NULL,
+	grade int4 NULL,
+	CONSTRAINT enrollment_check CHECK (((grade >= 1) AND (grade <= 10))),
+	CONSTRAINT enrollment_pk PRIMARY KEY (enrollmentid),
+	CONSTRAINT enrollment_studentonetypeofcourse UNIQUE (studentid, courseid),
+	CONSTRAINT enrollment_un UNIQUE (studentid, courseid, teacherid),
+	CONSTRAINT enrollment_students_fk FOREIGN KEY (studentid) REFERENCES public.students(studentid) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT enrollment_teachers_courses_fk FOREIGN KEY (courseid,teacherid) REFERENCES public.teachers_courses(courseid,teacherid) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO public.users (username, "password", usertype, firstname, lastname) VALUES( 'admin', 'admin123', 'admin', 'admin', 'admin');

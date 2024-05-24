@@ -1,0 +1,64 @@
+.button {
+  -fx-font: 14px "SansSerif";
+  -fx-text-fill: #FFFFFF;
+  -fx-background-color:  #193b36;
+  -fx-border-color: #FFFFFF;
+  -fx-border-width: 2px;
+  -fx-border-radius: 3px;
+  -fx-cursor: hand;
+
+}
+
+.label {
+  -fx-font: 16px "SansSerif";
+  -fx-text-fill: #FFFFFF;
+}
+
+#Title {
+  -fx-font: 24px "SansSerif";
+  -fx-text-fill: rgb(255, 215, 0);
+  -fx-font-weight: bold;
+  -fx-underline: true;
+}
+
+.table-view .table-column .label {
+  -fx-text-fill: #193b36;
+}
+
+#newDepartmentNameField .label,
+#selectClassChoice .label{
+  -fx-text-fill: #193b36;
+}
+
+#noTeachersErrorLabel,
+#studentAlreadyStudiesCourseLabel,
+#teacherAlreadyTeachesCourseLabel,
+#regNumberTakenLabel,
+#usernameTakenLabel,
+#completeAllFieldsLabel,
+#classNameAlreadyExistsLabel,
+#classCodeAlreadyExistsLabel,
+#departmentNameAlreadyExistsLabel,
+#departmentCodeAlreadyExistsLabel,
+#courseNameAlreadyExistsLabel,
+#courseCodeAlreadyExistsLabel {
+  -fx-text-fill: red;
+  -fx-font: 16px "SansSerif";
+  -fx-font-weight: bold;
+}
+
+#studentNoLengthText {
+  -fx-text-fill: red;
+  -fx-font-size: 14px;
+}
+
+#accountTypeLabel {
+  -fx-font: 18px "SansSerif";
+  -fx-font-weight: bold;
+}
+
+#successLabel {
+  -fx-text-fill: rgb(0, 155, 0);
+  -fx-font: 16px "SansSerif";
+  -fx-font-weight: bold;
+}
